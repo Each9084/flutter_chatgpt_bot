@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
-import 'package:chatgpt_bot/constances.dart';
 import 'package:chatgpt_bot/model/message_model.dart';
 import 'package:flutter/material.dart';
+
+import '../constances.dart';
 
 class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({super.key});
