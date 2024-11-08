@@ -44,36 +44,114 @@ class _ChatBotState extends State<ChatBotScreen> {
         //可以堆叠起来
         children: [
           Column(
-            children: [_appBar(), Expanded(flex: 7, child: Container())],
+            children: [
+              _appBar(),
+              /**
+               * List View 设置对话 一来一回
+               * */
+              Expanded(
+                  flex: 7,
+                  child: ListView.builder(
+                    ///TODO: Find out the builder and itemCount
+                    itemCount: message.length,
+                    //苹果的滚动风格 到底部会回弹
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context,index) {
+                      return _botCard(index:index);
+                    },
+                  ))
+            ],
           ),
 
           /*
           * 底部导航
           * */
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.08,
-              width: double.maxFinite,
-              padding: EdgeInsets.symmetric(horizontal: kDefault),
-              decoration: BoxDecoration(
-                color: Colors.brown,
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                    hintText: 'plz input the question',
-                    disabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(kDefault)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue),
-                      borderRadius: BorderRadius.all(Radius.circular(kDefault)),
-                    )),
-              ),
-            ),
-          )
+          _bottomNavigation(context)
         ],
+      ),
+    );
+  }
+
+  //TODO 详细了解命名参数和其他的区别
+  Padding _botCard({required int index}) {
+    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Stack(
+                        children: [
+                          CircleAvatar(
+                            child: Icon(
+                              Icons.person,
+                              size: 30,
+                            ),
+                          ),
+                          Positioned(
+                            left: 50,
+                            child: Column(
+                              children: [
+                                Container(
+                                  //TODO padding应该在外面 不能写在里面
+                                  padding:EdgeInsets.symmetric(horizontal: 5,vertical: 0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black.withOpacity(.23),
+                                            offset: Offset(3, .2),
+                                            //阴影模糊半径
+                                            blurRadius: kDefault)
+                                      ]
+                                  ),
+                                  child: Text(
+                                    'data',
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+  }
+
+  Align _bottomNavigation(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.08,
+        width: double.maxFinite,
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(kDefault),
+                topLeft: Radius.circular(kDefault)),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(.23),
+                  offset: Offset(3, .2),
+                  //阴影模糊半径
+                  blurRadius: kDefault)
+            ]),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(.12),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: TextField(
+            controller: txtMessage,
+            decoration: InputDecoration(
+                hintStyle: TextStyle(fontSize: 25),
+                suffixIcon: Icon(
+                  Icons.send,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                hintText: '  plz input the question',
+                disabledBorder: InputBorder.none,
+                enabledBorder: InputBorder.none),
+          ),
+        ),
       ),
     );
   }
