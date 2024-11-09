@@ -105,16 +105,16 @@
 
 chatgpt_bot/ 
 
-├── android/ # Android 特定的配置文件和资源 
-	├── assets/ # 应用资源，例如图像、图标等 
-├── ios/ # iOS 特定的配置文件和资源 
-├── lib/ # Flutter 应用代码 
-	│ ├── models/ # 包含消息模型，例如 MessageModel 
-	│ ├── services/ # 处理与 OpenAI API 的通信 
-	│ ├── main.dart # 应用入口和 UI 
-├── test/ # 测试文件 
-├── pubspec.yaml # 项目的依赖和元数据 
-└── README.md # 项目的文档
+├── android/ # Android 特定的配置文件和资源   
+	├── assets/ # 应用资源，例如图像、图标等   
+├── ios/ # iOS 特定的配置文件和资源   
+├── lib/ # Flutter 应用代码   
+	│ ├── models/ # 包含消息模型，例如 MessageModel   
+	│ ├── services/ # 处理与 OpenAI API 的通信   
+	│ ├── main.dart # 应用入口和 UI   
+├── test/ # 测试文件   
+├── pubspec.yaml # 项目的依赖和元数据   
+└── README.md # 项目的文档  
 
 
 
