@@ -41,7 +41,7 @@
 - **成熟的 框架**：简单易用的界面，严格按照OpenAPI建立的结构,实现顺畅的交互体验。
 - **跨平台支持**：使用 Flutter 开发，支持 Android,IOS,Windows客户端,Web应用.
 
-![demostration](./apkDemo/demostration.gif)
+<img src="./apkDemo/demostration.gif" width="200" />
 
 
 
